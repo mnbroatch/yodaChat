@@ -7,14 +7,13 @@ const messageSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-
 messageSchema.pre('save', function (next) {
   console.log(message);
   let options = {
     method: 'GET',
     url: `https://yoda.p.mashape.com/yoda?sentence=${this.body}`,
     headers: {
-      'X-Mashape-Key': 'oOoPUqYbiimshgsPxWlmJD6ntZ5np1Bseu5jsn3YdLXlj2I9x5',
+      'X-Mashape-Key': process.env.MASHAPE_KEY,
       Accept: 'text/plain',
     },
   }

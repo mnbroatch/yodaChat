@@ -20,15 +20,16 @@
       return;
     });
 
-    $scope.sendMessage = message =>
-    $http.post('/api/messages', message)
-    .then(returnedMessage => {
-      socket.emit('sendMessage', returnedMessage);
-    });
+    $scope.sendMessage = message => {
+      $http.post('/api/messages', message)
+      .then(returnedMessage => {
+        socket.emit('sendMessage', returnedMessage);
+      });
+    };
 
     socket.on('newMessage',function(data){
       $scope.messageArray.push(data.data);
-console.log('$scope.messageArray',$scope.messageArray);
+      console.log('$scope.messageArray',$scope.messageArray);
     })
   }
 })();

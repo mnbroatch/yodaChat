@@ -79,18 +79,24 @@ textarea {
   margin-top: 10px; }
 
 
-// .star-wars-crawl {
-//   position:relative;
-//   animation: 3s linear crawl;
-// }
-//
-// @keyframes crawl {
-//   to {
-//     bottom: 400px;
-//     opacity: 0;
-//     transform: scale(.5);
-//   }
-// }
+.star-wars-crawl {
+  position:relative;
+  animation: 3s linear crawl;
+}
+
+@keyframes crawl {
+  from {
+    bottom: 0;
+    opacity: 1;
+    transform: scale(1) perspective(600px) rotatex(35deg);
+  
+  }
+  to {
+    bottom: 400px;
+    opacity: 0;
+    transform: scale(.5) perspective(600px) rotatex(35deg);
+  }
+}
 
 
 /*# sourceMappingURL=style.css.map */

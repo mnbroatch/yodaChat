@@ -15,6 +15,8 @@ head
   script(src="/bower_components/angular-ui-router/release/angular-ui-router.js", charset="utf-8")
   script(src="/bower_components/sweetalert/dist/sweetalert.min.js", charset="utf-8")
   script(src="/bower_components/ngSweetAlert/SweetAlert.min.js", charset="utf-8")
+  script(src="bower_components/angular-ui-router-anim-in-out/anim-in-out.js", charset="utf-8")
+  link(rel="stylesheet", href="/bower_components/angular-ui-router-anim-in-out/css/anim-in-out.css")
 
 
   script(src="bower_components/angular-socket-io/socket.min.js", charset="utf-8")
@@ -25,17 +27,9 @@ head
 body(ng-app='myApp', ng-controller='mainController as main')
   .container-fluid
 
-    div.input-area
-      textarea#chat-input(name='', ng-model='newMessage.body')
-      // textarea#chat-input(name='', cols='30', rows='10', ng-model='newMessage.body')
-      button.submit-button(ng-click='sendMessage(newMessage)') Chat, you should.
+    button(ui-sref="main")
+    button(ui-sref="home")
 
-
-    div.message-area.fade(ng-repeat='message in messageArray track by $index')
-      | {{message.author}}
-      | {{message.createdAt}}
-      div.message
-        | {{message.body}}
 
 
 
@@ -49,5 +43,4 @@ body(ng-app='myApp', ng-controller='mainController as main')
     //       | {{message.body}}
 
 
-    h1 #{title}
-    ui-view
+  ui-view.anim-in-out.anim-fade.ui-view-style(data-anim-speed="1000" data-anim-sync="true")

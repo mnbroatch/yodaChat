@@ -42,11 +42,11 @@ gulp.task('default', ['build', 'watch', 'nodemon']);
 
 gulp.task('sync', ['build', 'watch', 'b-sync']);
 
-gulp.task('build', ['pug/html', 'css', 'js', 'favicon']);
+gulp.task('build', ['html', 'css', 'js', 'favicon']);
 
 // WATCHES
 gulp.task('watch', () => {
-  gulp.watch(['client/html/**/*.pug', 'client/html/**/*.html'], ['pug/html']);
+  gulp.watch(['client/html/**/*.pug', 'client/html/**/*.html'], ['html']);
   gulp.watch('client/js/**/*.js', ['js']);
   gulp.watch('client/css/**/*.scss', ['css']);
   gulp.watch('client/*.ico', ['favicon']);
@@ -120,7 +120,7 @@ gulp.task('clean:js', () =>
 
 
 // HTML
-gulp.task('html', () =>
+gulp.task('html',['clean:html'], () =>
   gulp.src(paths.html.input)
   .pipe(gulp.dest(paths.html.output))
 );

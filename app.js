@@ -11,6 +11,24 @@ const bodyParser = require('body-parser');
 const app = express();
 const server = http.createServer(app);
 
+
+
+let io = require('socket.io')(server);
+
+io.on('connection',function(socket){
+	console.log(`Socket connected. ${socket}`);
+
+	socket.on('sendMessage', function(data){
+		io.emit('newMessage', data);
+	});
+
+	socket.on('disconnect', function(){
+		console.log(`Disconnect ${socket}`)
+	});
+});
+
+
+
 const mongoose = require('mongoose');
 const mongoUrl = process.env.MONGODB_URI || 'mongodb://localhost/attHackathon'; // TODO: SET MONGODB URL
 mongoose.connect(mongoUrl, err => {
@@ -34,6 +52,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   res.handle = (err, data) => {
+    console.log(err,data);
     res.status(err ? 400 : 200).send(err || data);
   };
   return next();

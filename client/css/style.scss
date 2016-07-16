@@ -1,0 +1,58 @@
+body {
+  background-color: #001011;
+  color: white;
+}
+
+
+.input-area {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #3AAFB9;
+}
+
+textarea {
+  display: block;
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  background-color: #EEEEEE;
+  color: black;
+}
+
+.message-area {
+  display: block;
+  padding:20px;
+  padding-top:5px;
+  border-radius: 20px;
+  background-color: #093A3E;
+  margin: 20px;
+  opacity: 1;
+}
+
+.message {
+  margin-top:4px;
+  display: block;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: #3AAFB9;
+  color: black;
+}
+
+.fade.ng-enter {
+  transition: 0.5s ease all;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.fade.ng-enter.ng-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.submit-button{
+  background-color: #001011;
+  padding:10px;
+  border-radius:7px;
+  margin-top: 10px;
+}

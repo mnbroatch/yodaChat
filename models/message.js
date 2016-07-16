@@ -14,10 +14,10 @@ const messageSchema = new mongoose.Schema({
   author: { type: String },
   body: { type: String },
   createdAt: { type: Date, default: Date.now },
+  fileName: { type: String },
 });
 
 messageSchema.pre('save', function (next) {
-  console.log(message);
   const options = {
     method: 'GET',
     url: `https://yoda.p.mashape.com/yoda?sentence=${this.body}`,
@@ -29,15 +29,16 @@ messageSchema.pre('save', function (next) {
   request(options, (err, response, body) => {
     if (err) return err;
     this.body = body;
-    this.toSpeech(this.body);
-    return next();
+    // this.toSpeech((filename) => {
+    //   this.filename = filename;
+    //   return next();
+    // });
+    return this.toSpeech(next)
   });
 });
 
-messageSchema.methods.toSpeech = function () {
-  console.log('this.body',this.body);
+messageSchema.methods.toSpeech = function (cb) {
   let words = this.body.match(/[a-z.,]+/ig);
-  console.log(words);
   if (words.indexOf('Hmmmmmm.') > 0) {
     const index = words.indexOf('Hmmmmmm.');
     words[index] = words[index].slice(0, 3);
@@ -48,8 +49,14 @@ messageSchema.methods.toSpeech = function () {
     voice: 'en-US_MichaelVoice',
     accept: 'audio/wav',
   };
+  console.log('before text to speech');
+  const fileName = `audio/yodaSpeech-${this._id}.wav`;
   textToSpeech.synthesize(params)
-    .pipe(fs.createWriteStream(`audio/yodaSpeech-${this._id}.wav`));
+    .pipe(fs.createWriteStream(fileName))
+    .on('finish', () => {
+      this.fileName = fileName;
+      cb();
+    });
 };
 
 

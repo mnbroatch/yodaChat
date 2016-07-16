@@ -1,9 +1,14 @@
 html {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+}
 
 body {
-  background-color: #001011;
-  color: white; }
+  background-color: black;
+  background-image:url("../images/stars.jpg"); 
+  background-size:100%;
+  background-repeat:no-repeat;
+  color: white;
+}
 
 .input-area {
   margin: 20px;
@@ -13,10 +18,12 @@ body {
   width: 80%;
   max-width: 80%;
   margin: auto;
-  transform: perspective(600px) rotatex(35deg);
-  text-align: center; }
+  transform: perspective(500px) rotatex(30deg);
+  text-align: center;
+}
 
 textarea {
+  resize:none;
   display: block;
   border:none;
   padding: 40px;
@@ -28,26 +35,26 @@ textarea {
   font-size: 45px;
   font-weight: bold;
   background: transparent;
-  transform: perspective(600px) rotatex(25deg); 
 }
 
 .textarea-box {
   display: block;
   border-radius: 20px;
   height: 300px;
-  width: 85%;
-  max-width: 85%;
-  background-color: #001011;
+  width: 95%;
+  max-width: 95%;
+  background-color: black;
   margin: auto;
-  transform: perspective(600px) rotatex(25deg); }
+}
 
 .message-area {
+  margin: 20px;
+  overflow:hidden;
   display: block;
   padding: 20px;
   padding-top: 5px;
   border-radius: 20px;
   background-color: #093A3E;
-  margin: 20px;
   opacity: 1; }
 
 .message {
@@ -73,7 +80,8 @@ textarea {
   transform: translateY(0); }
 
 .submit-button {
-  background-color: #001011;
+  background-color: black;
+  border: black;
   padding: 10px;
   border-radius: 7px;
   margin-top: 10px; }
@@ -88,13 +96,10 @@ textarea {
   from {
     bottom: 0;
     opacity: 1;
-    transform: scale(1) perspective(600px) rotatex(35deg);
-  
   }
   to {
     bottom: 400px;
     opacity: 0;
-    transform: scale(.5) perspective(600px) rotatex(35deg);
   }
 }
 

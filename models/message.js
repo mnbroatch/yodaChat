@@ -18,30 +18,38 @@ const messageSchema = new mongoose.Schema({
 
 messageSchema.pre('save', function (next) {
   console.log(message);
-  let options = {
+  const options = {
     method: 'GET',
     url: `https://yoda.p.mashape.com/yoda?sentence=${this.body}`,
     headers: {
       'X-Mashape-Key': process.env.MASHAPE_KEY,
       Accept: 'text/plain',
     },
-  }
-  request(options, (err,response,body) => {
+  };
+  request(options, (err, response, body) => {
     if (err) return err;
     this.body = body;
     this.toSpeech(this.body);
-    next();
+    return next();
   });
 });
 
 messageSchema.methods.toSpeech = function () {
-console.log('this.body',this.body);
+  console.log('this.body',this.body);
+  let words = this.body.match(/[a-z.,]+/ig);
+  console.log(words);
+  if (words.indexOf('Hmmmmmm.') > 0) {
+    const index = words.indexOf('Hmmmmmm.');
+    words[index] = words[index].slice(0, 3);
+  }
+  words = words.join(' ');
   const params = {
-    text:this.body,
-    voice: "en-US_MichaelVoice",
-    accept: "audio/wav",
+    text: words,
+    voice: 'en-US_MichaelVoice',
+    accept: 'audio/wav',
   };
-  textToSpeech.synthesize(params).pipe(fs.createWriteStream('output.wav'));
+  textToSpeech.synthesize(params)
+    .pipe(fs.createWriteStream(`audio/yodaSpeech-${this._id}.wav`));
 };
 
 

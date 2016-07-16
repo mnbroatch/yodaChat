@@ -4,7 +4,7 @@ const request = require('request');
 const messageSchema = new mongoose.Schema({
   author: { type: String },
   body: { type: String },
-createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
 });
 
 

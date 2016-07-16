@@ -1,0 +1,9 @@
+<div class="container-fluid"><h1>Home!</h1></div>
+
+<textarea id="chat-input" name="" cols="30" rows="10" ng-model="newMessage.body"></textarea>
+
+<button ng-click="sendMessage(newMessage)">Submit</button>
+
+<div ng-repeat="message in messageArray track by $index">
+  {{message}}
+</div>

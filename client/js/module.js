@@ -7,15 +7,20 @@
     'ngAnimate',
     'ngTouch',
     'ui.bootstrap',
+    'btford.socket-io',
   ])
-  .config(config);
+  .config(config)
+  .factory('socket', function(socketFactory){
+    return socketFactory();
+  });
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('home', {
-      url: '/',
+      url: '/home',
       templateUrl: '/html/home.html',
     });
     $urlRouterProvider.otherwise('/');
   }
 })();
+

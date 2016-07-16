@@ -21,6 +21,12 @@
     });
 
     $scope.sendMessage = message => {
+      let text = document.getElementById('chat-input');
+      text.classList = "star-wars-crawl";
+      setTimeout(()=>{
+        text.value = "";
+        text.classList = "";
+      },3001)
       $http.post('/api/messages', message)
       .then(returnedMessage => {
         socket.emit('sendMessage', returnedMessage);

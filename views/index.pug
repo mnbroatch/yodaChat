@@ -27,20 +27,9 @@ head
 body(ng-app='myApp', ng-controller='mainController as main')
   .container-fluid
 
+
     button(ui-sref="main")
     button(ui-sref="home")
-
-
-
-
-
-
-
-    // div.fade(ng-repeat='message in messageArray track by $index')
-    //   div.message-area
-    //     | {{message.createdAt}}
-    //     div.message
-    //       | {{message.body}}
 
 
   ui-view.anim-in-out.anim-fade.ui-view-style(data-anim-speed="1000" data-anim-sync="true")
